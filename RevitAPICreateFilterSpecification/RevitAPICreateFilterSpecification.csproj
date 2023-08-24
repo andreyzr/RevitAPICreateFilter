@@ -74,6 +74,7 @@
     </Compile>
     <Compile Include="MainViewViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wrappers\ScheduleWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

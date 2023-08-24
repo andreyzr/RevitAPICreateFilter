@@ -5,6 +5,12 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitAPICreateFilter", "RevitAPICreateFilter\RevitAPICreateFilter.csproj", "{F0447125-1C4A-4027-B477-5C7937DE2DD2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitAPICreateFilterSpecification", "RevitAPICreateFilterSpecification\RevitAPICreateFilterSpecification.csproj", "{330844CF-5F0F-4881-9A00-750F8C9BDED3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitAPIViwsSchedules", "..\RevitAPIViwsSchedules\RevitAPIViwsSchedules\RevitAPIViwsSchedules.csproj", "{54B65D80-35B3-4BEC-9D51-F571725FC956}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitAPITrainingLibrary", "..\..\Тема 5.Основы создания интерфейса и библиотек\RevitAPITrainingLibrary\RevitAPITrainingLibrary\RevitAPITrainingLibrary.csproj", "{E88A23B6-FF27-485F-82E7-8E302C5EB089}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{F0447125-1C4A-4027-B477-5C7937DE2DD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0447125-1C4A-4027-B477-5C7937DE2DD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0447125-1C4A-4027-B477-5C7937DE2DD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{330844CF-5F0F-4881-9A00-750F8C9BDED3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{330844CF-5F0F-4881-9A00-750F8C9BDED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{330844CF-5F0F-4881-9A00-750F8C9BDED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{330844CF-5F0F-4881-9A00-750F8C9BDED3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54B65D80-35B3-4BEC-9D51-F571725FC956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54B65D80-35B3-4BEC-9D51-F571725FC956}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54B65D80-35B3-4BEC-9D51-F571725FC956}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54B65D80-35B3-4BEC-9D51-F571725FC956}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E88A23B6-FF27-485F-82E7-8E302C5EB089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E88A23B6-FF27-485F-82E7-8E302C5EB089}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E88A23B6-FF27-485F-82E7-8E302C5EB089}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E88A23B6-FF27-485F-82E7-8E302C5EB089}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

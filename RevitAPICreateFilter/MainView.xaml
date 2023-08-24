@@ -18,7 +18,7 @@
                Margin="5"/>
         <ComboBox ItemsSource="{Binding Filters}"
                   SelectedItem="{Binding SelectedFilters}"
-                  Name="Name"
+                  DisplayMemberPath="Name"
                   Margin="5"/>
         <Button Content="Добавить фильтр"
                 Command="{Binding AddFilterCommand}"

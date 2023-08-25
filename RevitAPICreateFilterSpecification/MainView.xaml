@@ -26,12 +26,12 @@
         </ListBox>
         <Label Content="Название параметра"
                Margin="5"/>
-        <TextBlock Text="{Binding ParameterName}"
+        <TextBox Text="{Binding ParameterName}"
                    Margin="5"/>
 
         <Label Content="Значение параметра"
                Margin="5"/>
-        <TextBlock Text="{Binding ParameterValue}"
+        <TextBox Text="{Binding ParameterValue}"
                    Margin="5"/>
 
         <Button Content="Добавить фильтр спецификации"

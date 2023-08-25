@@ -42,14 +42,42 @@ namespace RevitAPICreateFilterSpecification
             List<ScheduleWrapper> selectedSchedule = Schedules.Where(s => s.IsSelected).ToList();
             if (selectedSchedule == null)
                 return;
-            foreach (var schedule in selectedSchedule)
-            {
-                var scheduleDef = schedule.ViewSchedule.Definition;
-                if (scheduleDef == null)
-                    continue;
 
-                ScheduleField field = FindField(schedule.ViewSchedule, ParameterName);
+            using(var ts=new Transaction(_doc,"Add filter to schedule"))
+            {
+                ts.Start();
+                foreach (var schedule in selectedSchedule)
+                {
+                    var scheduleDef = schedule.ViewSchedule.Definition;
+                    if (scheduleDef == null)
+                        continue;
+
+                    ScheduleField field = FindField(schedule.ViewSchedule, ParameterName);
+                    if (field == null)
+                    {
+                        SchedulableField schedulableField = FindSchedulableField(schedule.ViewSchedule, ParameterName);
+                        if (schedulableField == null)
+                            continue;
+                        field = scheduleDef.AddField(schedulableField);
+                    }
+                    if (field == null)
+                        continue;
+
+                    var filter = new ScheduleFilter(field.FieldId, ScheduleFilterType.Equal, ParameterValue);
+                    if (filter == null)
+                        continue;
+
+                    scheduleDef.AddFilter(filter);
+                }
+                ts.Commit();
             }
+        }
+
+        private SchedulableField FindSchedulableField(ViewSchedule viewSchedule, string parameterName)
+        {
+            var schedulableField=viewSchedule.Definition.GetSchedulableFields()
+                .FirstOrDefault(p=>p.GetName(viewSchedule.Document)==parameterName);
+            return schedulableField;
         }
 
         private ScheduleField FindField(ViewSchedule viewSchedule, string parameterName)
@@ -83,9 +111,5 @@ namespace RevitAPICreateFilterSpecification
                 .Cast<ViewSchedule>()
                 .ToList();
         }
-
-
-
-
     }
 }

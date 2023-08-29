@@ -50,9 +50,13 @@ namespace RevitAPIHW7._1
 
             using (var ts = new Transaction(_doc, "Add new OnAddSheetsCommand"))
             {
+                ElementId viewSelectId = ViewSelect.Id;
                 ts.Start();
                 for (int i = 0; i < NumberOfSheets; i++)
                 {
+
+
+
                     ViewSheet viewSheet = ViewSheet.Create(_doc, SheetSelect.Id);
 
                     Parameter designedpar = viewSheet.get_Parameter(BuiltInParameter.SHEET_DESIGNED_BY);
@@ -60,7 +64,7 @@ namespace RevitAPIHW7._1
 
                     UV location = new UV((viewSheet.Outline.Max.U - viewSheet.Outline.Min.U) / 2, (viewSheet.Outline.Max.V - viewSheet.Outline.Min.V) / 2);
 
-                    Viewport viewport = Viewport.Create(_doc, viewSheet.Id, ViewSelect.Id, new XYZ(location.U, location.V, 0));
+                    ScheduleSheetInstance viewport = ScheduleSheetInstance.Create(_doc, viewSheet.Id, viewSelectId, new XYZ(location.U, location.V, 0));
                     //viewSheet.Name = string.Format("Лист-{0}",i+1);
                     //viewSheet.SheetNumber = string.Format("{0}",i+1);
                 }

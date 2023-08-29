@@ -64,7 +64,7 @@ namespace RevitAPIHW7._1
 
                     UV location = new UV((viewSheet.Outline.Max.U - viewSheet.Outline.Min.U) / 2, (viewSheet.Outline.Max.V - viewSheet.Outline.Min.V) / 2);
 
-                    viewport = Viewport.Create(_doc, viewSheet.Id, dublviewSelect, new XYZ(location.U, location.V, 0));
+                    viewport = Viewport.Create(_doc, viewSheet.Id, dublviewSelect, new XYZ(location.U, location.V, 0));//https://www.youtube.com/watch?v=6dGrkB6K2fM
 
                 }
                 ts.Commit();

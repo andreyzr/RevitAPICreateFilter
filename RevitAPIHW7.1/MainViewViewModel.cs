@@ -24,11 +24,16 @@ namespace RevitAPIHW7._1
         private Document _doc;
 
         public List<FamilySymbol> Sheets { get; }
-        public ExportSheetType SelectedType { get; set; }
+        public FamilySymbol SheetSelect { get; set; }
+        public List<ViewPlan> Views { get; }
+        public int NumberOfSheets { get; set; }
+        public ViewPlan ViewSelect { get; set; }
+        public string DesignedBy { get; set; }
 
-        public DelegateCommand AddFilterCommand { get; }
-        public string ParameterName { get; set; }
-        public string ParameterValue { get; set; }
+
+
+        public DelegateCommand AddSheetsCommand { get; }
+
 
 
         public MainViewViewModel(ExternalCommandData commandData)
@@ -36,19 +41,32 @@ namespace RevitAPIHW7._1
             _commandData = commandData;
             _doc = _commandData.Application.ActiveUIDocument.Document;
             Sheets = Utils.GetSheets(_commandData);
-            AddFilterCommand = new DelegateCommand(OnAddFilterCommand);
+            Views = Utils.GetViewPlan(_commandData);
+            AddSheetsCommand = new DelegateCommand(OnAddSheetsCommand);
         }
 
-        private void OnAddFilterCommand()
+        private void OnAddSheetsCommand()
         {
 
-
-            using (var ts = new Transaction(_doc, "Add filter to schedule"))
+            using (var ts = new Transaction(_doc, "Add new OnAddSheetsCommand"))
             {
                 ts.Start();
+                for (int i = 0; i < NumberOfSheets; i++)
+                {
+                    ViewSheet viewSheet = ViewSheet.Create(_doc, SheetSelect.Id);
 
+                    Parameter designedpar = viewSheet.get_Parameter(BuiltInParameter.SHEET_DESIGNED_BY);
+                    designedpar.Set(DesignedBy);
+
+                    UV location = new UV((viewSheet.Outline.Max.U - viewSheet.Outline.Min.U) / 2, (viewSheet.Outline.Max.V - viewSheet.Outline.Min.V) / 2);
+
+                    Viewport viewport = Viewport.Create(_doc, viewSheet.Id, ViewSelect.Id, new XYZ(location.U, location.V, 0));
+                    //viewSheet.Name = string.Format("Лист-{0}",i+1);
+                    //viewSheet.SheetNumber = string.Format("{0}",i+1);
+                }
                 ts.Commit();
             }
+            RaiseCloseRequest();
         }
 
 

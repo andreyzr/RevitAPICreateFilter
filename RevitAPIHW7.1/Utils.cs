@@ -25,5 +25,19 @@ namespace RevitAPIHW7._1
 
             return sheetsTypes;
         }
+
+        public static List<ViewPlan> GetViewPlan(ExternalCommandData commandData)
+        {
+            UIApplication uiapp = commandData.Application;
+            UIDocument uidoc = uiapp.ActiveUIDocument;
+            Document doc = uidoc.Document;
+
+            List<ViewPlan> viewPlansList = new FilteredElementCollector(doc)
+                                                        .OfClass(typeof(ViewPlan))
+                                                        .Cast<ViewPlan>()
+                                                        .ToList();
+
+            return viewPlansList;
+        }
     }
 }

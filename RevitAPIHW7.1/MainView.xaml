@@ -12,26 +12,26 @@
         <Label Content="Выбрать тип листа"
                    Margin="5"/>
         <ListBox ItemsSource="{Binding Sheets}"
+                 SelectedValue="{Binding SheetSelect}"
                  SelectionMode="Extended"
                  DisplayMemberPath="Name"
                  MaxHeight="200"
                  ScrollViewer.VerticalScrollBarVisibility="Auto"
                  ScrollViewer.HorizontalScrollBarVisibility="Auto">
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="IsSelected"
-                            Value="{Binding FamilySymbol}"/>
-                </Style>
-            </ListBox.ItemContainerStyle>
+        </ListBox>        
+        <Label Content="Выбрать вид"
+                   Margin="5"/>
+        <ListBox ItemsSource="{Binding Views}"
+                 SelectedValue="{Binding ViewSelect}"
+                 SelectionMode="Extended"
+                 DisplayMemberPath="Name"
+                 MaxHeight="200"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                 ScrollViewer.HorizontalScrollBarVisibility="Auto">
         </ListBox>
         <Label Content="Число листов"
                Margin="5"/>
         <TextBox Text="{Binding NumberOfSheets}"
-                   Margin="5"/>
-
-        <Label Content="Выбрать вид"
-               Margin="5"/>
-        <TextBox Text="{Binding View}"
                    Margin="5"/>
 
         <Label Content="Добавить имя разработчика"
@@ -40,7 +40,7 @@
                    Margin="5"/>
 
         <Button Content="Добавить лист(ы)"
-                Command="{Binding DesignedBy}"
+                Command="{Binding AddSheetsCommand}"
                 Margin="5"/>
     </StackPanel>
 </Window>

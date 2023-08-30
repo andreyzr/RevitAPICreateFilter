@@ -3,7 +3,6 @@ using Autodesk.Revit.DB.Plumbing;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
 using Prism.Commands;
-using RevitAPIHW7._1.Wrappers;
 using RevitAPITrainingLibrary;
 using System;
 using System.Collections.Generic;
@@ -54,17 +53,16 @@ namespace RevitAPIHW7._1
                 for (int i = 0; i < NumberOfSheets; i++)
                 {
                     ElementId dublviewSelectId = ViewSelect.Duplicate(ViewDuplicateOption.Duplicate);
-                    Viewport viewport = null;
-                    ViewSheet viewSheet = null;
 
-                    viewSheet = ViewSheet.Create(_doc, SheetSelect.Id);
+
+                    ViewSheet viewSheet = ViewSheet.Create(_doc, SheetSelect.Id);
 
                     Parameter designedpar = viewSheet.get_Parameter(BuiltInParameter.SHEET_DESIGNED_BY);
                     designedpar.Set(DesignedBy);
 
                     UV location = new UV((viewSheet.Outline.Max.U - viewSheet.Outline.Min.U) / 2, (viewSheet.Outline.Max.V - viewSheet.Outline.Min.V) / 2);
 
-                    viewport = Viewport.Create(_doc, viewSheet.Id, dublviewSelectId, new XYZ(location.U, location.V, 0));
+                    Viewport viewport = Viewport.Create(_doc, viewSheet.Id, dublviewSelectId, new XYZ(location.U, location.V, 0));
 
                 }
                 ts.Commit();

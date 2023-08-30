@@ -47,13 +47,13 @@ namespace RevitAPIHW7._1
 
         private void OnAddSheetsCommand()
         {
-            ElementId dublviewSelect = ViewSelect.Duplicate(ViewDuplicateOption.Duplicate);
 
             using (var ts = new Transaction(_doc, "Add new OnAddSheetsCommand"))
             {
                 ts.Start();
                 for (int i = 0; i < NumberOfSheets; i++)
                 {
+                    ElementId dublviewSelectId = ViewSelect.Duplicate(ViewDuplicateOption.Duplicate);
                     Viewport viewport = null;
                     ViewSheet viewSheet = null;
 
@@ -64,7 +64,7 @@ namespace RevitAPIHW7._1
 
                     UV location = new UV((viewSheet.Outline.Max.U - viewSheet.Outline.Min.U) / 2, (viewSheet.Outline.Max.V - viewSheet.Outline.Min.V) / 2);
 
-                    viewport = Viewport.Create(_doc, viewSheet.Id, dublviewSelect, new XYZ(location.U, location.V, 0));//https://www.youtube.com/watch?v=6dGrkB6K2fM
+                    viewport = Viewport.Create(_doc, viewSheet.Id, dublviewSelectId, new XYZ(location.U, location.V, 0));
 
                 }
                 ts.Commit();
